@@ -38,10 +38,13 @@
     /* Navigation */
     .nav { position: fixed; inset: 0 0 auto; z-index: 30; padding: 18px clamp(18px, 4vw, 60px); pointer-events: none; }
     .nav-inner { max-width: 1360px; margin: auto; display: flex; justify-content: space-between; align-items: center; pointer-events: auto; }
-    .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--white); font-size: .83rem; font-weight: 600; letter-spacing: .025em; }
-    .brand-mark { position: relative; width: 32px; height: 32px; border: 1px solid currentColor; border-radius: 50%; }
-    .brand-mark::before, .brand-mark::after { content: ""; position: absolute; inset: 6px; border: 1px solid currentColor; border-radius: 50%; }
-    .brand-mark::after { inset: 12px; background: currentColor; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--white); }
+    .brand-symbol { width: 39px; height: 39px; flex: 0 0 auto; overflow: visible; }
+    .brand-symbol .ring, .brand-symbol .c-arc { fill: none; stroke: currentColor; stroke-linecap: round; }
+    .brand-symbol .ring { stroke-width: 3.2; } .brand-symbol .c-arc { stroke-width: 4.4; } .brand-symbol .forward { fill: currentColor; }
+    .brand-lockup { display: grid; gap: 3px; line-height: 1; }
+    .brand-name { font: 500 1.3rem/.72 var(--display); letter-spacing: -.04em; }
+    .brand-descriptor { font: 500 .42rem/1 var(--mono); letter-spacing: .3em; text-transform: uppercase; }
     .nav-links { display: flex; gap: 26px; align-items: center; color: rgba(255,255,255,.88); font-size: .78rem; font-weight: 500; }
     .nav-links a { text-decoration: none; }
     .nav-links a:not(.nav-button):hover { color: var(--gold-light); }
@@ -103,9 +106,9 @@
     .intro-layout { display: grid; grid-template-columns: 1.03fr .97fr; gap: clamp(40px, 10vw, 150px); align-items: center; }
     .intro-statement { max-width: 670px; margin: 0; }
     .intro-lead { max-width: 620px; margin: 0; color: var(--ink); font: 500 clamp(1.6rem, 2.55vw, 2.5rem)/1.14 var(--display); letter-spacing: -.035em; }
-    .intro-align { position: relative; width: fit-content; margin: 18px 0 17px; padding: 1px 24px 4px 0; color: var(--teal); font: italic 500 clamp(2.05rem, 3.4vw, 3.35rem)/.96 var(--display); letter-spacing: -.055em; }
-    .intro-align::after { content:""; position:absolute; right:0; top:50%; width:15px; height:15px; transform:translateY(-42%); border:1px solid var(--gold); border-radius:50%; box-shadow:0 0 0 7px var(--paper); }
+    .intro-align { width: fit-content; margin: 18px 0 17px; padding: 1px 0 4px; color: var(--teal); font: italic 500 clamp(2.05rem, 3.4vw, 3.35rem)/.96 var(--display); letter-spacing: -.055em; }
     .intro-coda { max-width: 545px; margin: 0; padding: 15px 0 0 18px; border-left: 2px solid var(--gold); color: var(--ink-soft); font-size: clamp(1rem, 1.2vw, 1.13rem); line-height: 1.58; }
+    .intro-coda em { color: var(--teal); font-family: var(--display); font-size: 1.08em; font-weight: 500; } .intro-coda strong { color: var(--gold); font-weight: 700; } .intro-coda i { color: var(--teal-deep); font-family: var(--display); font-size: 1.1em; font-weight: 500; }
     .principles { position: relative; padding: 26px 0 25px 40px; border-left: 1px solid var(--gold); }
     .principles::before { content: ""; position: absolute; width: 14px; height: 14px; left: -8px; top: 22px; border: 1px solid var(--gold); background: var(--paper); border-radius: 50%; }
     .principle { display: grid; grid-template-columns: 31px 1fr; gap: 12px; margin-bottom: 18px; }
@@ -116,19 +119,23 @@
     @media (max-width: 780px) { .intro-layout { grid-template-columns: 1fr; } }
 
     /* Outcome strand */
-    .outcomes { overflow: hidden; background: #dcebea; }
+    .outcomes { isolation: isolate; overflow: hidden; background: #dcebea; }
+    .outcomes::before, .outcomes::after { content: ""; position: absolute; z-index: -1; pointer-events: none; width: min(78vw, 1120px); aspect-ratio: 1.7; right: -17vw; top: 10%; border: 1px solid rgba(30,107,107,.19); border-radius: 50%; transform: rotate(-17deg); }
+    .outcomes::after { width: min(63vw, 900px); right: -7vw; top: 21%; border-color: rgba(30,107,107,.11); transform: rotate(-17deg); }
+    .outcomes .container { position: relative; z-index: 1; }
     .outcomes-header { display: flex; justify-content: space-between; gap: 35px; align-items: end; margin-bottom: 60px; }
-    .outcome-strand { position: relative; display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; padding-top: 40px; }
-    .outcome-strand::before { content: ""; position: absolute; top: 0; left: 4%; right: 4%; height: 160px; border-top: 1px solid rgba(30,107,107,.5); border-radius: 50% 50% 0 0; transform: scaleX(1.1); }
-    .outcome { position: relative; min-height: 205px; padding: 32px 18px 20px; border-radius: 50% 50% 22px 22px / 13% 13% 20px 20px; background: rgba(255,252,247,.76); border: 1px solid rgba(30,107,107,.12); transition: transform .35s, background .35s, box-shadow .35s; }
-    .outcome:hover { transform: translateY(-12px); background: var(--paper); box-shadow: 0 20px 35px rgba(17,68,72,.12); }
-    .outcome::before { content: ""; position: absolute; top: -28px; left: 50%; width: 10px; height: 10px; transform: translateX(-50%); background: var(--gold); border: 3px solid #dcebea; border-radius: 50%; }
-    .outcome:nth-child(even) { transform: translateY(44px); } .outcome:nth-child(even):hover { transform: translateY(32px); }
-    .outcome-num { margin-bottom: 18px; color: var(--teal); font: .61rem var(--mono); letter-spacing: .1em; }
+    .outcome-strand { position: relative; display: grid; grid-template-columns: repeat(6, 1fr); align-items: end; gap: 14px; min-height: 375px; padding: 20px 0 0; border-bottom: 1px solid rgba(30,107,107,.34); }
+    .outcome { --bar-height: 198px; position: relative; align-self: end; height: var(--bar-height); min-height: 0; padding: 25px 18px 20px; overflow: hidden; border: 1px solid rgba(30,107,107,.12); border-radius: 26px 26px 2px 2px; background: rgba(255,252,247,.88); box-shadow: 0 14px 28px rgba(17,68,72,.06); opacity: 1; transform: none; transition: background .3s, box-shadow .3s; }
+    .outcome::before { content: ""; position: absolute; z-index: 2; inset: -1px; background: #dcebea; transform: scaleY(1); transform-origin: bottom; transition: transform .9s cubic-bezier(.18,.8,.25,1); }
+    .outcome.in-view::before { transform: scaleY(0); }
+    .outcome > * { position: relative; z-index: 1; opacity: 0; transition: opacity .3s ease .45s; } .outcome.in-view > * { opacity: 1; }
+    .outcome:hover { background: var(--paper); box-shadow: 0 20px 35px rgba(17,68,72,.13); }
+    .outcome:nth-child(1) { --bar-height: 198px; } .outcome:nth-child(2) { --bar-height: 226px; } .outcome:nth-child(3) { --bar-height: 254px; } .outcome:nth-child(4) { --bar-height: 282px; } .outcome:nth-child(5) { --bar-height: 310px; } .outcome:nth-child(6) { --bar-height: 338px; }
+    .outcome-num { margin-bottom: 15px; color: var(--teal); font: .61rem var(--mono); letter-spacing: .1em; }
     .outcome h3 { margin-bottom: 9px; font: 500 1.25rem/1.02 var(--display); letter-spacing: -.025em; }
     .outcome p { margin: 0; color: var(--ink-soft); font-size: .79rem; line-height: 1.5; }
-    @media (max-width: 900px) { .outcome-strand { grid-template-columns: repeat(3, 1fr); row-gap: 55px; } .outcome:nth-child(even) { transform: none; } .outcome:nth-child(even):hover { transform: translateY(-12px); } .outcome-strand::before { display: none; } .outcome::before { top: -14px; } }
-    @media (max-width: 520px) { .outcomes-header { display: block; } .outcomes-header .section-copy { margin-top: 25px; } .outcome-strand { grid-template-columns: 1fr 1fr; gap: 40px 12px; } .outcome { min-height: 180px; padding-inline: 14px; } }
+    @media (max-width: 900px) { .outcome-strand { grid-template-columns: repeat(3, 1fr); min-height: 0; } .outcome { height: max(var(--bar-height), 230px); } }
+    @media (max-width: 520px) { .outcomes-header { display: block; } .outcomes-header .section-copy { margin-top: 25px; } .outcome-strand { grid-template-columns: 1fr 1fr; gap: 12px; } .outcome { height: max(var(--bar-height), 230px); padding-inline: 14px; } }
 
     /* Capacity constellation */
     .capacities { min-height: calc(100svh - 62px); display: flex; align-items: center; padding: clamp(42px, 5vw, 72px) 0 clamp(34px, 4vw, 56px); background: var(--teal-deep); color: var(--white); overflow: hidden; }
@@ -191,7 +198,7 @@
     .form-actions { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-top: 20px; } .form-note { margin: 0; color: rgba(255,255,255,.52); font-size: .68rem; }
     .form-success { display: none; margin-top: 15px; color: var(--gold-light); font-size: .9rem; }
     footer { display: flex; justify-content: space-between; align-items: end; gap: 20px; padding: 28px max(20px, 4vw); background: #0a3037; color: rgba(255,255,255,.58); font-size: .7rem; }
-    .footer-brand { color: white; font: 500 1.15rem var(--display); } .footer-brand span { color: var(--gold-light); font-style: italic; } footer a { color: rgba(255,255,255,.78); text-decoration-color: rgba(228,189,117,.7); text-underline-offset: 3px; } footer a:hover { color: var(--gold-light); }
+    .footer-brand { display: flex; align-items: center; gap: 11px; color: white; } .footer-brand .brand-symbol { width: 42px; height: 42px; } .footer-brand .brand-name { font-size: 1.36rem; } .footer-brand .brand-descriptor { font-size: .43rem; } footer a { color: rgba(255,255,255,.78); text-decoration-color: rgba(228,189,117,.7); text-underline-offset: 3px; } footer a:hover { color: var(--gold-light); }
     @media (max-width: 760px) { .contact-wrap { grid-template-columns: 1fr; } .form-grid { grid-template-columns: 1fr; } .field.full { grid-column: auto; } .form-actions, footer { align-items: start; flex-direction: column; } }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
   </style>
@@ -200,7 +207,7 @@
   <a class="skip-link" href="#main">Skip to main content</a>
   <nav class="nav" aria-label="Main navigation">
     <div class="nav-inner">
-      <a class="brand" href="#top" aria-label="Coherence Coaching home"><span class="brand-mark" aria-hidden="true"></span>COHERENCE COACHING</a>
+      <a class="brand" href="#top" aria-label="Coherence Coaching home"><svg class="brand-symbol" viewBox="0 0 100 100" aria-hidden="true"><circle class="ring" cx="50" cy="50" r="43"/><path class="c-arc" d="M73 27 A31 31 0 1 0 73 73"/><path class="c-arc" d="M64 37 A18 18 0 1 0 64 63"/><polygon class="forward" points="43,42 43,58 55,50"/><polygon class="forward" points="57,42 57,58 69,50"/></svg><span class="brand-lockup"><span class="brand-name">Coherence</span><span class="brand-descriptor">Coaching</span></span></a>
       <div class="nav-links"><a href="#capacities">Capacities</a><a href="#approach">Approach</a><a href="#coach">For coaches</a><a class="nav-button" href="#contact">Begin a conversation</a></div>
     </div>
   </nav>
@@ -220,7 +227,7 @@
 
     <section class="section intro" id="work">
       <div class="container intro-layout">
-        <div class="reveal"><p class="eyebrow">The work</p><div class="intro-statement"><p class="intro-lead">When conditions are nurtured by inspired leadership, team relationships, personal development, and intentional design,</p><p class="intro-align">outcomes begin to align.</p><p class="intro-coda">Organisations shift from mere coping to catalytic coherence, driving breakthrough performance through radical authenticity.</p></div></div>
+        <div class="reveal"><p class="eyebrow">The work</p><div class="intro-statement"><p class="intro-lead">When conditions are nurtured by inspired leadership, team relationships, personal development, and intentional design,</p><p class="intro-align">outcomes begin to align.</p><p class="intro-coda">Shift your organisation from <em>mere coping</em> to <strong>catalytic coherence</strong>, driving breakthrough performance through deep authenticity that becomes <i>felt</i>.</p></div></div>
         <div class="principles reveal" data-delay="1">
           <div class="principle"><span class="principle-no">01</span><p><strong>Practical, not performative.</strong> We work with real decisions, relationships, conflicts, and change.</p></div>
           <div class="principle"><span class="principle-no">02</span><p><strong>Human, not soft.</strong> Relational capacity is an operating condition for durable performance.</p></div>
@@ -266,7 +273,7 @@
 
     <section class="section contact" id="contact"><div class="container contact-wrap"><div class="reveal"><p class="eyebrow">Start here</p><h2>Let’s make<br>room for a wiser <em>next move.</em></h2><p class="section-copy">Tell us what your organisation, team, or practice is navigating. We’ll respond personally to explore whether there is a useful fit.</p></div><div class="reveal" data-delay="1"><form id="contact-form"><div class="form-grid"><div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div><div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required></div><div class="field full"><label for="role">Role, organisation, or practice</label><input id="role" name="role"></div><div class="field full"><label for="interest">I’m interested in</label><select id="interest" name="interest"><option>Coaching for my organisation</option><option>Coaching for myself or my leadership team</option><option>Becoming a Coherence Coach</option><option>Exploring a partnership</option></select></div><div class="field full"><label for="message">What is calling for attention?</label><textarea id="message" name="message"></textarea></div></div><div class="form-actions"><p class="form-note">No spam. No pressure. A real conversation.</p><button class="button" type="submit">Send inquiry <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div><p class="form-success">Thank you. Your inquiry has been received and someone from the team will be in touch.</p></form></div></div></section>
   </main>
-  <footer><div class="footer-brand">Coherence <span>Coaching</span></div><div>Delivered by the <a href="https://www.biofieldawareness.com" target="_blank" rel="noopener noreferrer">Biofield Awareness Institute</a>, in affiliation with <a href="https://coherence.earth" target="_blank" rel="noopener noreferrer">Coherence Earth</a>.</div><div>© 2026 Coherence Coaching Collaborative</div></footer>
+  <footer><div class="footer-brand"><svg class="brand-symbol" viewBox="0 0 100 100" aria-hidden="true"><circle class="ring" cx="50" cy="50" r="43"/><path class="c-arc" d="M73 27 A31 31 0 1 0 73 73"/><path class="c-arc" d="M64 37 A18 18 0 1 0 64 63"/><polygon class="forward" points="43,42 43,58 55,50"/><polygon class="forward" points="57,42 57,58 69,50"/></svg><span class="brand-lockup"><span class="brand-name">Coherence</span><span class="brand-descriptor">Coaching</span></span></div><div>Delivered by the <a href="https://www.biofieldawareness.com" target="_blank" rel="noopener noreferrer">Biofield Awareness Institute</a>, in affiliation with <a href="https://coherence.earth" target="_blank" rel="noopener noreferrer">Coherence Earth</a>.</div><div>© 2026 Coherence Coaching Collaborative</div></footer>
   <script>
     const capacityData = {
       presence: ['01 / 09', 'Self-awareness<br>and presence', "Recognizing one's internal state, assumptions, behaviour, and effect on others while staying attentive to what is happening now.", 'Noticing stress signals before responding and separating observation from assumption.'],
