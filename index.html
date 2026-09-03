@@ -162,7 +162,17 @@
     .practice b { display: block; margin-bottom: 3px; font: .63rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
     .practice b { display: inline; margin-right: 5px; font: .64rem var(--mono); letter-spacing: .1em; text-transform: uppercase; } .interaction-hint { float: right; color: rgba(255,255,255,.56); font: .62rem var(--mono); letter-spacing: .04em; }
     @media (max-width: 980px) { .capacities { min-height: auto; } .capacity-layout { grid-template-columns: 1fr; } .constellation { transform: scale(.9); margin-block: -24px; } .capacity-detail { width: min(720px, 100%); margin: -10px auto 0; } }
-    @media (max-width: 520px) { .capacities { padding-block: 56px 42px; } .constellation { transform: scale(.74); margin-block: -68px; } .capacity-detail { min-height: 166px; padding-inline: 23px; border-radius: 22px 7px; } .interaction-hint { display:none; } }
+    @media (max-width: 520px) {
+      .capacities { padding-block: 56px 42px; }
+      .constellation { width: min(100%, 360px); margin: 12px auto 28px; transform: none; }
+      .core { width: 124px; height: 124px; }
+      .core-word { font-size: 1.2rem; } .core-sub { margin-top: 7px; font-size: .54rem; }
+      .constellation .capacity-node { --start-radius: calc(50% - 31px); width: 62px; height: 62px; padding: 5px; font-size: .46rem; }
+      .constellation.assembled .capacity-node { --node-radius: calc(50% - 31px); }
+      .capacity-detail { min-height: 0; width: 100%; margin: 0 auto; padding: 20px 22px 22px 28px; border-radius: 22px 7px; }
+      .capacity-detail h3 { font-size: clamp(1.55rem, 8vw, 1.95rem); }
+      .interaction-hint { display: none; }
+    }
 
     /* Method */
     .method { background: var(--paper); }
