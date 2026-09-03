@@ -167,8 +167,8 @@
       .constellation { width: min(100%, 360px); margin: 12px auto 28px; transform: none; }
       .core { width: 124px; height: 124px; }
       .core-word { font-size: 1.2rem; } .core-sub { margin-top: 7px; font-size: .54rem; }
-      .constellation .capacity-node { --start-radius: calc(50% - 31px); width: 62px; height: 62px; padding: 5px; font-size: .46rem; }
-      .constellation.assembled .capacity-node { --node-radius: calc(50% - 31px); }
+      .constellation .capacity-node { --mobile-orbit-radius: min(149px, calc(50vw - 51px)); --start-radius: var(--mobile-orbit-radius); width: 62px; height: 62px; padding: 5px; font-size: .46rem; }
+      .constellation.assembled .capacity-node { --node-radius: var(--mobile-orbit-radius); }
       .capacity-detail { min-height: 0; width: 100%; margin: 0 auto; padding: 20px 22px 22px 28px; border-radius: 22px 7px; }
       .capacity-detail h3 { font-size: clamp(1.55rem, 8vw, 1.95rem); }
       .interaction-hint { display: none; }
