@@ -207,6 +207,7 @@
     input:focus, select:focus, textarea:focus { border-color: var(--gold-light); box-shadow: 0 0 0 3px rgba(228,189,117,.14); }
     .form-actions { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-top: 20px; } .form-note { margin: 0; color: rgba(255,255,255,.52); font-size: .68rem; }
     .form-success { display: none; margin-top: 15px; color: var(--gold-light); font-size: .9rem; }
+    .form-success.is-error { color: #ffd0c6; }
     footer { display: flex; justify-content: space-between; align-items: end; gap: 20px; padding: 28px max(20px, 4vw); background: #0a3037; color: rgba(255,255,255,.58); font-size: .7rem; }
     .footer-brand { display: flex; align-items: center; gap: 11px; color: white; } .footer-brand .brand-symbol { width: 42px; height: 42px; } .footer-brand .brand-name { font-size: 1.36rem; } .footer-brand .brand-descriptor { font-size: .43rem; } footer a { color: rgba(255,255,255,.78); text-decoration-color: rgba(228,189,117,.7); text-underline-offset: 3px; } footer a:hover { color: var(--gold-light); }
     @media (max-width: 760px) { .contact-wrap { grid-template-columns: 1fr; } .form-grid { grid-template-columns: 1fr; } .field.full { grid-column: auto; } .form-actions, footer { align-items: start; flex-direction: column; } }
@@ -281,7 +282,7 @@
 
     <section class="section coach" id="coach"><div class="container coach-layout"><div class="reveal"><p class="eyebrow">A growing practice</p><h2>Bring this work<br>to the leaders<br>you <em>serve.</em></h2><p class="section-copy">Coherence Coaching is building a community of practitioners able to work faithfully and skilfully with the framework in real organisational settings.</p></div><aside class="coach-card reveal" data-delay="1"><p class="eyebrow">For experienced practitioners</p><p>Are you a coach, facilitator, or organisational-development practitioner drawn to this work? We are inviting conversation with people who can help this practice take root with integrity.</p><a class="button" href="#contact">Become a Coherence Coach <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></aside></div></section>
 
-    <section class="section contact" id="contact"><div class="container contact-wrap"><div class="reveal"><p class="eyebrow">Start here</p><h2>Let’s make<br>room for a wiser <em>next move.</em></h2><p class="section-copy">Tell us what your organisation, team, or practice is navigating. We’ll respond personally to explore whether there is a useful fit.</p></div><div class="reveal" data-delay="1"><form id="contact-form"><div class="form-grid"><div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div><div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required></div><div class="field full"><label for="role">Role, organisation, or practice</label><input id="role" name="role"></div><div class="field full"><label for="interest">I’m interested in</label><select id="interest" name="interest"><option>Coaching for my organisation</option><option>Coaching for myself or my leadership team</option><option>Becoming a Coherence Coach</option><option>Exploring a partnership</option></select></div><div class="field full"><label for="message">What is calling for attention?</label><textarea id="message" name="message"></textarea></div></div><div class="form-actions"><p class="form-note">No spam. No pressure. A real conversation.</p><button class="button" type="submit">Send inquiry <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div><p class="form-success">Thank you. Your inquiry has been received and someone from the team will be in touch.</p></form></div></div></section>
+    <section class="section contact" id="contact"><div class="container contact-wrap"><div class="reveal"><p class="eyebrow">Start here</p><h2>Let’s make<br>room for a wiser <em>next move.</em></h2><p class="section-copy">Tell us what your organisation, team, or practice is navigating. We’ll respond personally to explore whether there is a useful fit.</p></div><div class="reveal" data-delay="1"><form id="contact-form" action="https://formspree.io/f/mppwvadq" method="POST"><div class="form-grid"><div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div><div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required></div><div class="field full"><label for="role">Role, organisation, or practice</label><input id="role" name="role"></div><div class="field full"><label for="interest">I’m interested in</label><select id="interest" name="interest"><option>Coaching for my organisation</option><option>Coaching for myself or my leadership team</option><option>Becoming a Coherence Coach</option><option>Exploring a partnership</option></select></div><div class="field full"><label for="message">What is calling for attention?</label><textarea id="message" name="message"></textarea></div></div><div class="form-actions"><p class="form-note">No spam. No pressure. A real conversation.</p><button class="button" type="submit">Send inquiry <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div><p class="form-success" role="status" aria-live="polite"></p></form></div></div></section>
   </main>
   <footer><div class="footer-brand"><svg class="brand-symbol" viewBox="0 0 100 100" aria-hidden="true"><circle class="ring" cx="50" cy="50" r="43"/><path class="c-arc" d="M73 27 A31 31 0 1 0 73 73"/><path class="c-arc" d="M64 37 A18 18 0 1 0 64 63"/><polygon class="forward" points="43,42 43,58 55,50"/><polygon class="forward" points="57,42 57,58 69,50"/></svg><span class="brand-lockup"><span class="brand-name">Coherence</span><span class="brand-descriptor">Coaching</span></span></div><div>Delivered by the <a href="https://www.biofieldawareness.com" target="_blank" rel="noopener noreferrer">Biofield Awareness Institute</a>, in affiliation with <a href="https://coherence.earth" target="_blank" rel="noopener noreferrer">Coherence Earth</a>.</div><div>© 2026 Coherence Coaching Collaborative</div></footer>
   <script>
@@ -326,7 +327,32 @@
     };
     window.addEventListener('scroll', () => { if (!constellationTicking) { requestAnimationFrame(updateConstellationParallax); constellationTicking = true; } }, { passive: true });
     updateConstellationParallax();
-    document.querySelector('#contact-form').addEventListener('submit', event => { event.preventDefault(); event.currentTarget.querySelector('.form-success').style.display = 'block'; event.currentTarget.querySelector('button').textContent = 'Inquiry received'; event.currentTarget.querySelector('button').disabled = true; });
+    const contactForm = document.querySelector('#contact-form');
+    const contactStatus = contactForm.querySelector('.form-success');
+    const contactButton = contactForm.querySelector('button[type="submit"]');
+    const contactButtonMarkup = contactButton.innerHTML;
+    contactForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
+      contactButton.disabled = true;
+      contactButton.textContent = 'Sending inquiry…';
+      contactStatus.style.display = 'none';
+      contactStatus.classList.remove('is-error');
+      try {
+        const response = await fetch(contactForm.action, { method: 'POST', body: new FormData(contactForm), headers: { Accept: 'application/json' } });
+        if (!response.ok) throw new Error('Form submission failed');
+        contactForm.reset();
+        contactButton.textContent = 'Inquiry received';
+        contactStatus.textContent = 'Thank you. Your inquiry has been received and someone from the team will be in touch.';
+        contactStatus.style.display = 'block';
+      } catch (error) {
+        contactButton.disabled = false;
+        contactButton.innerHTML = contactButtonMarkup;
+        contactStatus.textContent = 'We could not send your inquiry just now. Please try again in a moment.';
+        contactStatus.classList.add('is-error');
+        contactStatus.style.display = 'block';
+      }
+    });
   </script>
 </body>
 </html>
