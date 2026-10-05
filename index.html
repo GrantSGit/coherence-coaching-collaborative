@@ -1,6 +1,14 @@
 <!doctype html>
 <html lang="en-CA">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQT0Q9B85J"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZQT0Q9B85J');
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Coherence Coaching helps leaders and organisations develop the capacity to stay clear, connected, and adaptive in complexity.">
@@ -341,6 +349,7 @@
       try {
         const response = await fetch(contactForm.action, { method: 'POST', body: new FormData(contactForm), headers: { Accept: 'application/json' } });
         if (!response.ok) throw new Error('Form submission failed');
+        gtag('event', 'generate_lead', { form_id: 'coherence_coaching_inquiry', interest: contactForm.elements.interest.value });
         contactForm.reset();
         contactButton.textContent = 'Inquiry received';
         contactStatus.textContent = 'Thank you. Your inquiry has been received and someone from the team will be in touch.';
